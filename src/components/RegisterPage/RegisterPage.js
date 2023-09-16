@@ -2,28 +2,7 @@ import { Component } from "react";
 import "./registerPage.css"
 
 export class RegisterPage extends Component {
-    state = {
-        usernameValue: "",
-        emailValue: "",
-        passwordValue: "",
-    }
 
-    handleInputChange = (event) => {
-        const { name, value } = event.target
-        this.setState({
-            [name]: value
-        })
-
-    }
-
-    onRegisterBtnClick = () => {
-        this.props.handler(this.state)
-        this.setState({
-            usernameValue: "",
-            emailValue: "",
-            passwordValue: "",
-        })
-    }
 
     render() {
         return (<div className="register-wrapper">
@@ -34,8 +13,8 @@ export class RegisterPage extends Component {
                     <input
                         id="username"
                         name="usernameValue"
-                        onChange={this.handleInputChange}
-                        value={this.state.usernameValue}
+                        onChange={this.props.handleInputChange}
+                        value={this.props.usernameValue}
                         placeholder="Username"
                         className="registerInput"></input>
                 </div>
@@ -45,8 +24,8 @@ export class RegisterPage extends Component {
                         id="email"
                         type="email"
                         name="emailValue"
-                        onChange={this.handleInputChange}
-                        value={this.state.emailValue}
+                        onChange={this.props.handleInputChange}
+                        value={this.props.emailValue}
                         placeholder="Email"
                         className="registerInput"></input>
                 </div>
@@ -56,14 +35,14 @@ export class RegisterPage extends Component {
                         id="password"
                         name="passwordValue"
                         type="password"
-                        onChange={this.handleInputChange}
-                        value={this.state.passwordValue}
+                        onChange={this.props.handleInputChange}
+                        value={this.props.passwordValue}
                         placeholder="Password"
                         className="registerInput"></input>
                 </div>
             </div>
             <div className="register-btn-wrapper">
-                <button disabled={!(this.state.usernameValue && this.state.emailValue && this.state.passwordValue)} onClick={this.onRegisterBtnClick} className="register-btn">Save</button>
+                <button disabled={!(this.props.usernameValue && this.props.emailValue && this.props.passwordValue)} onClick={this.props.onRegisterBtnClick} className="register-btn">Save</button>
             </div>
         </div>
         )

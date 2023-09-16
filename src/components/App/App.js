@@ -3,22 +3,43 @@ import RegisterPage from "../RegisterPage";
 import UserPage from "../Userpage/UserPage";
 
 export class App extends Component {
-
     state = {
+        usernameValue: "",
+        emailValue: "",
+        passwordValue: "",
         isEditMode: true,
-        data: null
     }
 
-    handler = (data) => {
+    handleInputChange = (event) => {
+        const { name, value } = event.target
         this.setState({
-            data, isEditMode: false
+            [name]: value
+        })
+
+    }
+
+
+
+    onRegisterBtnClick = () => {
+        this.setState({
+            isEditMode: false
         })
     }
 
     render() {
         return (
             <div className="App">
-                {this.state.isEditMode ? <RegisterPage handler={this.handler} /> : <UserPage data={this.state.data} />
+                {this.state.isEditMode ?
+                    <RegisterPage
+                        handleInputChange={this.handleInputChange}
+                        usernameValue={this.state.usernameValue}
+                        emailValue={this.state.emailValue}
+                        passwordValue={this.state.passwordValue}
+                        onRegisterBtnClick={this.onRegisterBtnClick}
+                    /> : <UserPage
+                        usernameValue={this.state.usernameValue}
+                        emailValue={this.state.emailValue}
+                        passwordValue={this.state.passwordValue} />
                 }
             </div>
         )

@@ -4,7 +4,7 @@ import "./userPage.css"
 class UserPage extends Component {
     render() {
 
-        const { usernameValue, emailValue, passwordValue } = this.props.data
+        const { usernameValue, emailValue, passwordValue } = this.props
 
 
 
