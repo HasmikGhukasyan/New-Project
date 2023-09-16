@@ -1,0 +1,18 @@
+.userpage-wrapper {
+    display: flex;
+
+}
+
+.userpage-list-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.userlist-item-container {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.userlistItem-title {
+    margin-right: 16px;
+}

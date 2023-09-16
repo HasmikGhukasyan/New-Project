@@ -2,41 +2,68 @@ import { Component } from "react";
 import "./registerPage.css"
 
 export class RegisterPage extends Component {
-
     state = {
         usernameValue: "",
         emailValue: "",
         passwordValue: "",
     }
-    onUsernameChange = (event) => {
+
+    handleInputChange = (event) => {
+        const { name, value } = event.target
         this.setState({
-            usernameValue: event.target.value
+            [name]: value
         })
-    }
-    onEmailChange = (event) => {
-        this.setState({
-            emailValue: event.target.value
-        })
-    }
-    onPasswordChange = (event) => {
-        this.setState({
-            passwordValue: event.target.value
-        })
+
     }
 
     onRegisterBtnClick = () => {
-        console.log(this.state)
+        this.props.handler(this.state)
+        this.setState({
+            usernameValue: "",
+            emailValue: "",
+            passwordValue: "",
+        })
     }
 
     render() {
         return (<div className="register-wrapper">
+            <h1 className="register-title">Register</h1>
             <div className="register-input-wrapper">
-                <input onChange={this.onUsernameChange} value={this.state.usernameValue} placeholder="Username" className="registerInput"></input>
-                <input onChange={this.onEmailChange} value={this.state.emailValue} placeholder="Email" className="registerInput"></input>
-                <input onChange={this.onPasswordChange} value={this.state.passwordValue} placeholder="Password" className="registerInput"></input>
+                <div className="register-item">
+                    <label className="label-input" htmlFor="usernameValue">Username:</label>
+                    <input
+                        id="username"
+                        name="usernameValue"
+                        onChange={this.handleInputChange}
+                        value={this.state.usernameValue}
+                        placeholder="Username"
+                        className="registerInput"></input>
+                </div>
+                <div className="register-item">
+                    <label className="label-input" htmlFor="emailValue">Email:</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="emailValue"
+                        onChange={this.handleInputChange}
+                        value={this.state.emailValue}
+                        placeholder="Email"
+                        className="registerInput"></input>
+                </div>
+                <div className="register-item">
+                    <label className="label-input" htmlFor="passwordValue">Password:</label>
+                    <input
+                        id="password"
+                        name="passwordValue"
+                        type="password"
+                        onChange={this.handleInputChange}
+                        value={this.state.passwordValue}
+                        placeholder="Password"
+                        className="registerInput"></input>
+                </div>
             </div>
             <div className="register-btn-wrapper">
-                <button onClick={this.onRegisterBtnClick} className="register-btn">Save</button>
+                <button disabled={!(this.state.usernameValue && this.state.emailValue && this.state.passwordValue)} onClick={this.onRegisterBtnClick} className="register-btn">Save</button>
             </div>
         </div>
         )
