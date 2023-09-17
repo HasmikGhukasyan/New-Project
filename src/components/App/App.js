@@ -1,6 +1,6 @@
 import { Component } from "react";
 import RegisterPage from "../RegisterPage";
-import UserPage from "../Userpage/UserPage";
+import UserPage from "../Userpage";
 
 export class App extends Component {
     state = {
@@ -8,6 +8,7 @@ export class App extends Component {
         emailValue: "",
         passwordValue: "",
         isEditMode: true,
+        fileUrl: "",
     }
 
     handleInputChange = (event) => {
@@ -16,6 +17,12 @@ export class App extends Component {
             [name]: value
         })
 
+    }
+
+    imageHandler = (fileUrl) => {
+        this.setState({
+            fileUrl,
+        })
     }
 
 
@@ -36,10 +43,13 @@ export class App extends Component {
                         emailValue={this.state.emailValue}
                         passwordValue={this.state.passwordValue}
                         onRegisterBtnClick={this.onRegisterBtnClick}
+                        imageHandler={this.imageHandler}
                     /> : <UserPage
                         usernameValue={this.state.usernameValue}
                         emailValue={this.state.emailValue}
-                        passwordValue={this.state.passwordValue} />
+                        passwordValue={this.state.passwordValue}
+                        fileUrl={this.state.fileUrl}
+                    />
                 }
             </div>
         )

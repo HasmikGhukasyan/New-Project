@@ -1,8 +1,28 @@
 import { Component } from "react";
-import "./registerPage.css"
+import "./registerPage.css";
 
 export class RegisterPage extends Component {
+    state = {
+        file: null,
+        fileUrl: "",
+    }
 
+
+    onUploadHandler = (event) => {
+        const file = event.target.files[0]
+        this.setState({
+            file,
+        })
+        var reader = new FileReader()
+        reader.onload = () => {
+            const fileUrl = reader.result
+            this.setState({ fileUrl })
+            this.props.imageHandler(fileUrl)
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
 
     render() {
         return (<div className="register-wrapper">
@@ -40,6 +60,8 @@ export class RegisterPage extends Component {
                         placeholder="Password"
                         className="registerInput"></input>
                 </div>
+                <input onChange={this.onUploadHandler} type="file" accept="image/jpeg, image/png, image/jpg"></input>
+                <img src={this.state.fileUrl} alt="" width={100} height="auto" />
             </div>
             <div className="register-btn-wrapper">
                 <button disabled={!(this.props.usernameValue && this.props.emailValue && this.props.passwordValue)} onClick={this.props.onRegisterBtnClick} className="register-btn">Save</button>

@@ -4,7 +4,7 @@ import "./userPage.css"
 class UserPage extends Component {
     render() {
 
-        const { usernameValue, emailValue, passwordValue } = this.props
+        const { usernameValue, emailValue, passwordValue, imageHandler } = this.props
 
 
 
@@ -24,6 +24,9 @@ class UserPage extends Component {
                     <div className="userlist-item-container">
                         <span className="userlistItem-title">Password</span>
                         <span>{passwordValue}</span>
+                    </div>
+                    <div>
+                        <img src={this.props.fileUrl} alt="" width={100} height="auto" />
                     </div>
                 </div>
             </div>
